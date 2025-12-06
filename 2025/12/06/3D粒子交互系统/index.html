@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Comments | 芙芙の小窝</title>
+    <title>3D 粒子交互系统 | 芙芙の小窝</title>
     <meta name="author" content="芙芙" />
     <meta name="description" content="记录芙芙的日常、心得与技术分享" />
     <meta name="keywords" content="芙宁娜, 博客, 技术, 日常" />
@@ -156,7 +156,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Comments</h1>
+        <h1>3D 粒子交互系统</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -170,7 +170,109 @@
     </div>
     
     <div class="content" v-pre>
-        
+        <h2 id="🌸-3D-粒子交互系统"><a href="#🌸-3D-粒子交互系统" class="headerlink" title="🌸 3D 粒子交互系统"></a>🌸 3D 粒子交互系统</h2><p>芙芙可爱喵~</p>
+<p><a href="https://titroupast.github.io/threejs-particles/">立即体验</a></p>
+<p><a href="">博客链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Titroupast/threejs-particles">GitHub链接</a></p>
+<p><img src="https://gastigado.cnies.org/d/public/8843670064bd7936ac2278c51ebe422e.jpg" alt="8843670064bd7936ac2278c51ebe422e"></p>
+<h3 id="🎀-项目简介-Project-Overview"><a href="#🎀-项目简介-Project-Overview" class="headerlink" title="🎀 项目简介 (Project Overview)"></a>🎀 项目简介 (Project Overview)</h3><p>本项目诞生于对最近很火的<strong>3D 粒子交互</strong>。</p>
+<p>最近，Web 开发界兴起了利用像 <strong>Gemini</strong> 这样的大型语言模型来生成复杂的 <strong>3D 粒子交互代码</strong> 的热潮。这个项目正是受此启发，进一步思考：既然 AI 可以生成<strong>代码逻辑</strong>，我们是否能将<strong>素材的生成流程</strong>也变得同样自动化和简便呢？</p>
+<p>核心灵感在于：<strong>将二维的图片素材</strong> 转换成 <strong>三维的粒子模型数据</strong>，从而将任何一张富有创意的图像，融入到 Three.js 的粒子世界中。</p>
+<p>这个工具旨在为 <strong>Three.js&#x2F;MediaPipe</strong> 驱动的粒子交互应用，提供一个完整的 <strong>模型数据生成、注入和管理</strong> 解决方案，让用户能够轻松地将个性化的图片（如角色、Logo 或图标）变成可以被手势操控的 3D 粒子效果。</p>
+<p>整个项目分为两个主要部分：</p>
+<ol>
+<li><strong>💻 Python&#x2F;CustomTkinter GUI 工具 (<code>particle_manager.py</code>)</strong>:<ul>
+<li><strong>核心功能</strong>: 将用户选择的 PNG&#x2F;JPG 图片转换为 <strong>Float32Array</strong> 格式的粒子位置和颜色数据。</li>
+<li><strong>模型注入</strong>: 自动将生成的 JS 文件保存到项目的 <code>models</code> 文件夹，并更新 <code>index.html</code> 的 <code>&lt;head&gt;</code> 区域以引用该文件。</li>
+<li><strong>模型管理</strong>: 扫描并列出 HTML 中引用的模型文件，允许用户一键从项目和 HTML 中彻底删除。</li>
+</ul>
+</li>
+<li><strong>🌐 Web 交互前端 (<code>index.html</code> + JS)</strong>:<ul>
+<li>基于 <strong>Three.js</strong> 渲染粒子效果。</li>
+<li>使用 <strong>MediaPipe Hands</strong> 实现手势交互 ，控制粒子的缩放和爆炸效果。</li>
+<li>能够动态加载并切换内置形状（如爱心、土星）和自定义图片模型。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="📋-依赖需求-Requirements"><a href="#📋-依赖需求-Requirements" class="headerlink" title="📋 依赖需求 (Requirements)"></a>📋 依赖需求 (Requirements)</h3><p>为了让这个美丽的工具和应用能够正常运行，您需要准备以下环境和依赖：</p>
+<h4 id="⚙️-Python-后端-项目管理器"><a href="#⚙️-Python-后端-项目管理器" class="headerlink" title="⚙️ Python 后端 (项目管理器)"></a>⚙️ Python 后端 (项目管理器)</h4><table>
+<thead>
+<tr>
+<th><strong>依赖名称</strong></th>
+<th><strong>用途</strong></th>
+<th><strong>安装命令</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Python 3.x</strong></td>
+<td>运行管理器的主程序。</td>
+<td>(无)</td>
+</tr>
+<tr>
+<td><strong>CustomTkinter</strong></td>
+<td>用于创建现代化、美观的桌面 GUI 界面。</td>
+<td><code>pip install customtkinter</code></td>
+</tr>
+<tr>
+<td><strong>Pillow (PIL)</strong></td>
+<td>用于加载、处理和分析源图片（提取像素数据）。</td>
+<td><code>pip install Pillow</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💖 <strong>注意</strong>: <code>particle_manager.py</code> 文件依赖于 Python 的 <strong><code>tkinter</code></strong> 库（通常随标准 Python 安装），以及上述额外的 <code>customtkinter</code> 和 <code>Pillow</code> 库。</p>
+</blockquote>
+<hr>
+<h4 id="💻-Web-前端-3D-粒子应用"><a href="#💻-Web-前端-3D-粒子应用" class="headerlink" title="💻 Web 前端 (3D 粒子应用)"></a>💻 Web 前端 (3D 粒子应用)</h4><p>Web 应用主要通过 <strong>CDN</strong> 引入外部库，无需本地安装：</p>
+<table>
+<thead>
+<tr>
+<th><strong>库&#x2F;框架</strong></th>
+<th><strong>用途</strong></th>
+<th><strong>CDN 链接 (已在 HTML 中引用)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Three.js</strong></td>
+<td>核心 3D 渲染引擎。</td>
+<td><code>https://unpkg.com/three@0.132.2/build/three.min.js</code></td>
+</tr>
+<tr>
+<td><strong>MediaPipe Hands</strong></td>
+<td>用于手势识别和追踪。</td>
+<td><code>https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js</code></td>
+</tr>
+<tr>
+<td><strong>MediaPipe Utilities</strong></td>
+<td>配合 MediaPipe 使用的工具库。</td>
+<td><code>camera_utils.js</code>, <code>control_utils.js</code>, <code>drawing_utils.js</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🌐 <strong>运行环境</strong>: 任何现代浏览器 (如 Chrome, Edge) 均可，但必须支持 <strong>WebGL</strong> 和 <strong>摄像头权限</strong> 才能启用手势交互功能。</p>
+</blockquote>
+<hr>
+<h3 id="🚀-运行指南-Getting-Started"><a href="#🚀-运行指南-Getting-Started" class="headerlink" title="🚀 运行指南 (Getting Started)"></a>🚀 运行指南 (Getting Started)</h3><h4 id="1-启动管理器"><a href="#1-启动管理器" class="headerlink" title="1. 启动管理器"></a>1. 启动管理器</h4><p>Bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python particle_manager.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-使用步骤-新增模型"><a href="#2-使用步骤-新增模型" class="headerlink" title="2. 使用步骤 (新增模型)"></a>2. 使用步骤 (新增模型)</h4><ol>
+<li><strong>选择项目根目录</strong>: 点击 <strong>[选择文件夹]</strong>，选择包含 <code>index.html</code> 的目录。管理器会自动创建 <code>models</code> 文件夹。</li>
+<li><strong>选择源图片</strong>: 点击 <strong>[选择图片]</strong>，选择一张您想要转换的 <strong>PNG (推荐透明背景)</strong> 或 JPG 图片。</li>
+<li><strong>填写信息</strong>: 输入 <strong>名称 (中文)</strong> 和 <strong>ID (英文)</strong>，ID 将用于生成文件名和 JS 键名。</li>
+<li><strong>调整粒子数</strong>: 使用滑块调整生成粒子的数量。</li>
+<li><strong>生成并注入</strong>: 点击 <strong>[⚡ 生成并注入到 models 文件夹 ⚡]</strong>，工具将生成 <code>[ID]_data.js</code> 文件，并自动修改 <code>index.html</code>。</li>
+</ol>
+<h4 id="3-使用步骤-删除模型"><a href="#3-使用步骤-删除模型" class="headerlink" title="3. 使用步骤 (删除模型)"></a>3. 使用步骤 (删除模型)</h4><ol>
+<li><strong>刷新列表</strong>: 在 <strong>[🗑️ 删除管理]</strong> 标签页，点击 <strong>[🔄 刷新列表]</strong>，加载 <code>index.html</code> 中引用的模型文件。</li>
+<li><strong>选择文件</strong>: 从下拉菜单中选择要删除的模型文件。</li>
+<li><strong>彻底删除</strong>: 点击 <strong>[🗑️ 彻底删除选中模型]</strong>，管理器将删除物理 JS 文件并清除 <code>index.html</code> 中对应的 <code>&lt;script&gt;</code> 标签。</li>
+</ol>
+<p>可视化交互界面如下：</p>
+<p><img src="https://gastigado.cnies.org/d/public/image-20251206215911435.png" alt="image-20251206215911435"></p>
+
     </div>
     
     
